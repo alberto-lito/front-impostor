@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400..900&family=Uncial+Antiqua&display=swap" rel="stylesheet">
+     <!--para que tome las clases de las secciones dentro del contenedor de ventana principal-->
+     <link rel="stylesheet" href="secciones/categorias.css">
+    <!--para que tome las clases de las secciones dentro del contenedor de ventana principal-->
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <header>
+           <div class="titulo">
+            <div class="img"></div>
+             <h1>impostor</h1>
+           </div>
+
+           <div class="menu" id="menu"></div>
+
+           <!--menu oculto-->
+
+<div class="menu-oculto" id="menu-oculto">
+    <!--idioma-->
+    <div>
+        <span>Idioma</span>
+
+        <div class="contenedor-bandera">
+        
+            <div class="box arg-hover" data-idioma="es">
+               
+                <div class="bandera argentina"></div>
+                <p>Español</p>
+            </div>
+    
+            <div class="box ing-hover" data-idioma="en">
+              
+                <div class="bandera ingles"></div>
+                <p>Ingles</p>
+            </div>
+
+        </div>
+
+    </div>
+ <!---------------------------->
+ <!--modo de juego-->
+    <div>
+        <span>Modo de juego</span>
+        <div class="box modo">
+            <p class="color-p">impostores</p>
+            <p class="color-p">inconscientes</p>
+        </div>
+    </div>
+ <!----------------------------->
+     <!--sonido-->
+    <div>
+        <span>Sonido</span>
+
+        <div  class="barra">
+            <label for="sonidoVolume">Tono:</label>
+            <input type="range" id="sonidoVolume" min="0" max="1" step="0.01" value="0.5">
+        </div>
+
+        <div>
+            <label for="musicaVolume">Musica:</label>
+            <input type="range" id="musicaVolume" min="0" max="1" step="0.01" value="0.5">
+        </div>
+
+    </div>
+<!------------------------------>
+</div>
+
+<!-------------------------------------------------------->
+
+    </header>
+
+
+
+ <main class="cnt-general">
+
+    <section class="ventana-principal" id="ventana-principal">
+
+
+      <!------------llamado a menu de opciones tarjeta----------------------->
+<div class="opciones">
+
+    <div class="tarjeta categorias">
+
+        <div class="img-ops ops img-ops--1 texto"></div>
+        <h2>Categorias</h2>
+        <p>
+            "¿Listo para el desafío? Elige una categoría y demuestra tu astucia."
+        </p>
+
+        <p class="btn"  id="btn-categorias">Elije</p>
+    </div>
+    <!----------------------------------->
+    <div class="tarjeta tutorial">
+        <div class="img-ops ops img-ops--2"></div>
+        <h2>Tutorial</h2>
+        <p>
+            "¿Nuevo en el juego? conviértete en el mejor impostor."
+            
+        </p>
+
+        <p class="btn">Aprende</p>
+    </div>
+     <!----------------------------------->
+    <div class="tarjeta iniciar">
+        <div class="img-ops ops img-ops--3"></div>
+        <h2>Iniciar partida</h2>
+        <p>
+            ¿Tienes lo que se necesita para descubrir al impostor?"
+        </p>
+
+        <p class="btn">Juega</p>
+    </div>
+</div>
+
+    </section>
+     <!------------aca termina----------------------->
+
+ </main>
+<!--cuerpo termina-->
+
+
+<!--------------------------------------------------------------------------------->
+
+
+<!-- aqui va el modal que tuve que hacer por las
+ politicas gronchas que ponen  los navegadores, que no permiten la reproduccion de musica automatica-->
+
+<!-- Modal de bienvenida con espacio para imagen -->
+
+<div id="modalBienvenida" class="modal">
+    <div class="modal-contenido">
+        <img id="imagenModal" src="./imagen modal/img-5.jpg" alt="Imagen de Bienvenida" class="imagen-modal">
+        <h2>¡Bienvenidos!</h2>
+        <p>
+            <b>Tuvimos</b> que hacer esto porque <br>
+            los <b>gronchos</b> de los navegadores <br>
+            <b>nos prohíben poner música</b>, pero <br>
+            vamos a fastidiarlos juntos. <br>
+            <b>¡Apachurrá el start!</b>
+        </p>        
+        <button id="iniciarMusicaBtn">Star</button>
+    </div>
+</div>
+
+
+<!----------------------------aqui va el js------------------------------------------------------>
+
+<!--para el menu oculto-->
+<script>
+    const menuIcon = document.getElementById("menu");
+    const menuOculto = document.getElementById("menu-oculto");
+  
+    menuIcon.addEventListener("click", () => {
+      const currentDisplay = window.getComputedStyle(menuOculto).display;
+      const isHidden = currentDisplay === "none";
+  
+      menuOculto.style.display = isHidden ? "block" : "none";
+      menuIcon.classList.toggle("activo", isHidden); // Solo agregar si se muestra
+    });
+  </script>
+  
+<!----------------------------------------------------------------------------------------->
+
+<!--para la reproducciona automatica con modal de bienvenida -->
+
+<script>
+// Sonidos globales
+
+// === index.js ===
+
+// Cargar los audios
+const efectoSonido = new Audio('./musica/sonido de botones/boton-4.mp3');
+const musicaFondo = new Audio('./musica/musica de pagina/fondo.mp3');
+musicaFondo.loop = true;
+
+window.addEventListener("DOMContentLoaded", () => {
+    const musicaSlider = document.getElementById('musicaVolume');
+    const sonidoSlider = document.getElementById('sonidoVolume');
+
+    musicaFondo.volume = parseFloat(musicaSlider.value);
+    musicaSlider.addEventListener('input', () => {
+        musicaFondo.volume = parseFloat(musicaSlider.value);
+    });
+
+    efectoSonido.volume = parseFloat(sonidoSlider.value);
+    sonidoSlider.addEventListener('input', () => {
+        efectoSonido.volume = parseFloat(sonidoSlider.value);
+    });
+});
+
+const modal = document.getElementById('modalBienvenida');
+const botonIniciarMusica = document.getElementById('iniciarMusicaBtn');
+
+function mostrarModal() {
+    modal.style.display = 'flex';
+}
+
+function iniciarMusica() {
+    musicaFondo.play().catch(console.error);
+    modal.style.display = 'none';
+}
+
+botonIniciarMusica.addEventListener('click', iniciarMusica);
+window.onload = mostrarModal;
+
+// SONIDO: botones con .btn y #btn
+function asignarSonidoABotones() {
+    document.querySelectorAll('.btn, #btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            efectoSonido.currentTime = 0;
+            efectoSonido.play();
+        });
+    });
+}
+
+let contenidoInicial = document.getElementById('ventana-principal').innerHTML;
+
+function asignarBotonCategorias() {
+    document.getElementById('btn-categorias')?.addEventListener('click', () => {
+        fetch('secciones/categorias.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('ventana-principal').innerHTML = data;
+                inicializarCaracteristicas();
+                asignarSonidoABotones(); // Reasignar sonidos a botones nuevos
+            })
+            .catch(err => console.error('Error al cargar sección:', err));
+    });
+}
+
+function inicializarEfectosTarjetas() {
+    document.querySelectorAll('.tarjeta').forEach(tarjeta => {
+        tarjeta.addEventListener('mousedown', () => tarjeta.classList.add('clickeada'));
+        tarjeta.addEventListener('mouseup', () => tarjeta.classList.remove('clickeada'));
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    asignarBotonCategorias();
+    inicializarEfectosTarjetas();
+    asignarSonidoABotones(); // Inicial
+});
+
+
+</script>
+<!--------------------seleccion de bander y futura traduccion-------------------------------------------------------->
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const argentina = document.querySelector('.arg-hover');
+        const ingles = document.querySelector('.ing-hover');
+
+        // Función para manejar el clic en las banderas
+        const toggleActive = (clickedFlag, otherFlag) => {
+            clickedFlag.classList.add('active');
+            otherFlag.classList.remove('active');
+        };
+
+        // Evento de clic para la bandera argentina
+        argentina.addEventListener('click', () => {
+            toggleActive(argentina, ingles);
+            // Aquí podrías agregar la función de cambiar el idioma si ya está implementada
+        });
+
+        // Evento de clic para la bandera de inglés
+        ingles.addEventListener('click', () => {
+            toggleActive(ingles, argentina);
+            // Aquí también podrías agregar la función de cambiar el idioma
+        });
+    });
+</script>
+
+<!-----------------------------modo seleccion de juego - evento click por ahora --------------------------------------------->
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const colorPElements = document.querySelectorAll('.color-p');
+
+        // Función para aplicar la clase active y mantener el hover
+        const toggleModeActive = (clickedElement) => {
+            colorPElements.forEach((element) => {
+                // Elimina la clase active de todos los elementos
+                element.classList.remove('active');
+            });
+            // Añade la clase active al elemento clickeado
+            clickedElement.classList.add('active');
+        };
+
+        // Añadir evento de clic a los elementos con clase .color-p
+        colorPElements.forEach((element) => {
+            element.addEventListener('click', () => {
+                toggleModeActive(element);
+            });
+        });
+    });
+</script>
+
+
+<!--para que me funcione los script dentro de caracteristicas-->
+
+<script src="./script.js/categorias.js"></script>
+
+
+
+
+</body>
+</html>

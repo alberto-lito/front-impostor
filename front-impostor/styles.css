@@ -1,0 +1,380 @@
+*{margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ font-size: 20px;
+ }
+
+
+ /* aca va el estilo de modal por culpa de los navegadores gronchos jajaj*/
+
+ /* Estilo básico del modal */
+ .modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-contenido {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 500px;
+  width: 80%;
+  height:auto; /* Aumentamos el alto del modal */
+}
+
+.modal h2 {
+  margin: 10px 0;
+  font-size: 3rem;
+}
+
+.modal p {
+  font-size: 18px;
+  text-align:justify;
+  margin-left:4.8rem;
+  margin-top: 20px;
+}
+
+.modal button {
+  padding: 15px 30px; /* Añadimos más espacio alrededor del texto */
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 2rem;
+}
+
+.modal button:hover {
+  background-color: #45a049;
+}
+
+/* Estilo de la imagen en el modal */
+.imagen-modal {
+  max-width: 100%;
+  height:150px;
+  border-radius: 8px;
+  margin: 30px;
+}
+
+/*-------------------------------------------------------------------aca termina -------------------------------------------------------*/
+
+ html{background-color: rgb(235, 231, 231); overflow-x: hidden;}
+ body {
+  
+    -webkit-user-select: none; /* Chrome, Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer / Edge */
+    user-select: none;         /* Estándar */
+  
+}
+/*-----encabezado------*/
+header{width: 100%;
+       height: 70px;
+       padding: 40px 0;
+       display: flex;
+       justify-content: space-around;
+       align-items: center;
+       box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2); /* Sombra suave hacia abajo */
+       box-sizing: border-box;
+       background: linear-gradient(90deg, #000000, #1e1e60, #3a0ca3, #7209b7, #e7609d);
+       color: white;
+       text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px rgb(204, 116, 189);
+ 
+
+      }
+
+.titulo{margin: 0 auto;
+        margin-right: 9rem;
+        padding-bottom: 8px;
+        text-align: center;
+        width:55%;
+        display: flex;
+        align-items:center;
+        justify-content:center;
+        gap: 5px;
+        border-radius:0 0 10px 10px;
+       }
+
+.titulo h1{font-size: 3rem;
+        font-family: "Cinzel Decorative", serif;}
+
+@keyframes cambioImagen {
+        0% {
+          background-image: url('./impostor/incognito.png');
+        }
+        25% {
+          background-image: url('./impostor/incognito\ -1.png');
+        }
+        50% {
+          background-image: url('./impostor/incognito\ -2.png');
+        }
+        75% {
+          background-image: url('./impostor/incognito\ -3.png');
+        }
+        100% {
+          background-image: url('./impostor/incognito.png');
+        }
+      }
+      
+      .img {
+        width: 60px;
+        height: 60px;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 5px;
+        border-radius: 100%;
+        animation: cambioImagen 3s infinite linear;
+        transition: background-image 1s ease-in-out;
+        /* Aquí se hace la animación */
+        filter: brightness(0) invert(1); /* Convierte la imagen a blanco */
+      }
+      
+
+     /*-------------icono menu-----------------*/
+
+     #menu-oculto {
+        display: none;/*para que se oculte y se muestre con js*/
+    }
+    
+    #menu.activo {
+        filter: brightness(0) invert(1); /* blanco cuando está activo */
+      }
+
+     .menu{background-image: url('menu-despegable.png');
+        width: 50px;
+        height:50px;
+        filter: brightness(0) invert(0); /* Esto hace que se vea negro */
+        background-position:center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 2rem;
+        cursor: pointer;}
+
+
+                 .menu-oculto{
+                     position:fixed;
+                     z-index: 1000;
+                     top:3rem;
+                     right:.1rem;
+                     width: 300px;
+                     height: auto;
+                     padding: 15px;
+                     text-align: center;
+                     background-color: rgba(0, 0, 0, 0.7);
+                     color: white;
+                     border-radius: 10px;
+                     text-shadow: none; /* Elimina el resplandor heredado */
+                    }
+   
+/*idioma*/
+.contenedor-bandera{display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    }
+
+.box{display: flex;
+     align-items:center;
+     justify-content: center;
+     padding: 7px;
+} 
+
+.box p{margin:4px;}
+
+     .arg-hover:hover{
+                background-color:rgb(187, 202, 231); color: #000000;}
+      .ing-hover:hover{background-color:rgb(231, 187, 187);color: #000000;}   
+      
+      /* Clase activa para simular hover después de un clic */
+.arg-hover.active {
+  background-color: rgb(187, 202, 231); 
+  color: #000000;
+}
+
+.ing-hover.active {
+  background-color: rgb(231, 187, 187);
+  color: #000000;
+}
+/*------------------------------------------------------------------------------------*/
+.bandera{width: 50px;
+         height: 50px;
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;
+}
+
+
+.argentina{background-image: url('./banderas/argentina.png');}
+.ingles{background-image: url('./banderas/estados-unidos.png');}
+
+
+/*modo*/
+span{font-size: 1.5rem;}
+.modo,
+.box{cursor: pointer;}
+
+.modo p{margin: 15px;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: rgb(150, 152, 165);}
+
+        .color-p:hover{ background-color: rgb(48, 48, 49);}
+
+        /* Estilo cuando el elemento está seleccionado (clickeado) */
+.color-p.active {
+  background-color: rgb(113, 113, 201); /* El mismo color que en el hover */
+  color: #fff; /* Opcional, para cambiar el color del texto si se desea */
+}
+
+/*---sonido--*/
+.barra{display: flex;
+       justify-content: center;
+       gap:2px;}        
+
+/*--------cuerpo----------------*/
+
+.cnt-general{
+        width:70%;
+        height: 450px;
+        background-color: whitesmoke;
+        margin: 0 auto;
+        margin-top: 1.5rem;
+        border-radius: 5px;
+        display: flex;
+        gap: 2rem;
+        padding: 2rem 1.3rem;
+        box-sizing: border-box;
+        overflow: hidden;
+
+
+}
+
+.ventana-principal{background-color: rgb(226, 223, 223);
+                   margin-left: 4px;
+                   width: 100%;
+                   border-radius: 5px;
+                   box-sizing: border-box;
+                   overflow: hidden;
+                   }                   
+
+/*-----------tarjetas de opciones----------------*/
+
+.opciones{display: flex;
+         padding: .5rem;
+         box-sizing: border-box;
+         overflow: hidden;}
+
+.tarjeta{
+         margin: 0px 15px;
+         width: 100%;
+         height: 350px;
+         box-sizing: border-box;
+         overflow: hidden;
+         border-radius: 5px;
+         background-color: #ffffff;
+         cursor:default;
+        }  
+
+.tarjeta h2{
+            text-align: center;
+            margin: 10px;
+           }
+
+.tarjeta p{
+            margin:0px 22px 20px 30px;}
+
+            .btn {
+              background-color: rgb(105, 105, 236);
+              color: white;
+              width: 50%;
+              padding: 2px;
+              text-align: center;
+              border-radius: 4px;
+              border: none;
+              transition: background-color 2s ease, color 2s ease, filter 2s ease, transform 0.1s ease;
+              filter: blur(2px);
+              cursor: pointer;
+            }
+            
+            .tarjeta:hover .btn {
+              background-color: #5dc0ee; /* Nuevo color de fondo del botón */
+              color: #ffffff;            /* Nuevo color de texto del botón */
+              filter: blur(0);
+            }
+            
+            .btn:active {
+              background-color: rgb(85, 85, 200); /* Color al hacer clic */
+              transform: translateY(2px);         /* Simula el efecto de presionar */
+            }
+               
+
+.img-ops{
+         width: 80%;
+         height: 150px;
+         margin: 0 auto;
+         margin-top:15px;
+        
+        }     
+
+.ops{
+       background-position: center;
+       background-size: cover;
+       background-repeat: no-repeat;
+       border-radius: 5px;
+       }  
+ 
+.img-ops--1{background-image: url('./tarjetas-imagenes/gamer-1.jpg');} 
+.img-ops--2{background-image: url('./tarjetas-imagenes/opciones-1.jpg');} 
+.img-ops--3{background-image: url('./tarjetas-imagenes/gamer-2.jpg');}      
+.tarjeta,
+.btn {
+  transition: background-color 2s ease, color 2s ease, filter 2s ease;
+  filter: blur(2px);
+
+}
+
+.tarjeta:hover{background-color: #252222;
+               color: rgb(250, 246, 246);
+               filter: blur(0);}
+
+.tarjeta:hover .btn {
+                background-color: #5dc0ee; /* Nuevo color de fondo del botón */
+                color: #ffffff;            /* Nuevo color de texto del botón */
+                cursor: pointer;
+                filter: blur(0);
+              }      
+              
+              .tarjeta:hover .btn {
+                background-color: #5dc0ee; /* Nuevo color de fondo del botón */
+                color: #ffffff;            /* Nuevo color de texto del botón */
+                filter: blur(0);
+              }
+              
+              .btn:active {
+                background-color: rgb(85, 85, 200); /* Color al hacer clic */
+                transform: translateY(2px);         /* Simula el efecto de presionar */
+              }
+
+              .btn {
+                -webkit-user-select: none; /* Safari y Chrome */
+                -moz-user-select: none;    /* Firefox */
+                -ms-user-select: none;     /* Internet Explorer/Edge */
+                user-select: none;
+              }
+              
+      
+/*------------------------------------------------------------------------------------------------*/
+
+/*aqui van los contenidos de  las secciones que seran llamadas por su respectivo boton en las tarjetas principales */
+
+
