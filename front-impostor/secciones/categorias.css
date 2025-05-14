@@ -48,7 +48,7 @@
   width: 150px;
   border-radius: 15px;
   background-color: aliceblue;
-  border: 1px solid #6343d6;
+  border: 1px solid #cac5db;
 }
  .tarjetas span{
                 font-size:15px;
@@ -56,6 +56,7 @@
                 display:block;
                 padding: 5px;
                 padding-left: 20px;
+                cursor: pointer;
                 } 
 
   .borde-hover{border-radius: 0 0 15px 15px;}
@@ -63,6 +64,7 @@
                         background-color:#6343d6;
                         color: aliceblue;
                }               
+
 
 .tarjetas h2{
              border-radius: 15px 15px 0 0;
@@ -96,14 +98,12 @@
 
           .btn-select{padding: 10px;
                       width: 100%;
-                      height: 40px;
+                      height: 30px;
+                      margin: 5px;
                       text-align: center;
+                      cursor:pointer ;
                       }
 
-                      .btn-select{
-                         color: white;
-                         background-color: rgb(99, 181, 228);}
-          
                         .verde{margin-right: 2px;}
                       .verde:hover,
 .verde.activo {
@@ -115,3 +115,21 @@
   background-color: rgb(214, 107, 107);
 }
 
+.activo-verde {
+  background-color: #3ba55d !important;
+  color: white !important;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.activo-rojo {
+  background-color: #e74c3c !important;
+  color: white !important;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.active-tarjetas span{ 
+                        background-color:#6343d6;
+                        color: aliceblue;
+               }               
