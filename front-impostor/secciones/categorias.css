@@ -60,9 +60,14 @@
                 } 
 
   .borde-hover{border-radius: 0 0 15px 15px;}
- .ctn,.tarjetas span:hover{ 
+ .ctn{ 
                         background-color:#6343d6;
                         color: aliceblue;
+               }               
+
+ .tarjetas span:hover{ 
+                        background-color:#ececec;
+                        color: rgb(47, 48, 49);
                }               
 
 
@@ -105,15 +110,8 @@
                       }
 
                         .verde{margin-right: 2px;}
-                      .verde:hover,
-.verde.activo {
-  background-color: rgb(83, 185, 83);
-}
+                        
 
-.rojo:hover,
-.rojo.activo {
-  background-color: rgb(214, 107, 107);
-}
 
 .activo-verde {
   background-color: #3ba55d !important;
@@ -123,13 +121,13 @@
 }
 
 .activo-rojo {
-  background-color: #e74c3c !important;
-  color: white !important;
+  background-color: rgb(216, 60, 60);
+  color: white;
   border-radius: 5px;
   padding: 5px;
 }
 
-.active-tarjetas span{ 
-                        background-color:#6343d6;
-                        color: aliceblue;
+.active-ops-tarjetas{ 
+                        background-color:#d1eec9;
+                        color: rgb(47, 50, 53);
                }               

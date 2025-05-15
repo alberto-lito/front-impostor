@@ -1,4 +1,5 @@
 // ========== MENÚ OCULTO ==========
+
 const menuIcon = document.getElementById("menu");
 const menuOculto = document.getElementById("menu-oculto");
 
@@ -7,11 +8,31 @@ menuIcon.addEventListener("click", () => {
   const isHidden = currentDisplay === "none";
   menuOculto.style.display = isHidden ? "block" : "none";
   menuIcon.classList.toggle("activo", isHidden);
+
+  // Sonido al hacer click en el ícono del menú
+
+  efectoSonido.currentTime = 0;
+  efectoSonido.play();
+});
+
+
+
+// Cierra el menú si se hace clic por  fuera de él
+
+document.addEventListener('click', function (event) {
+  const isClickInsideMenu = menuOculto.contains(event.target);
+  const isClickOnMenuIcon = menuIcon.contains(event.target);
+
+  if (!isClickInsideMenu && !isClickOnMenuIcon) {
+    menuOculto.style.display = 'none';
+    menuIcon.classList.remove('activo');
+  }
 });
 
 
 
 // ========== SONIDO Y MÚSICA ==========
+
 const efectoSonido = new Audio('./musica/sonido de botones/boton-4.mp3');
 const musicaFondo = new Audio('./musica/musica de pagina/fondo.mp3');
 musicaFondo.loop = true;
@@ -47,17 +68,18 @@ botonIniciarMusica.addEventListener('click', iniciarMusica);
 window.onload = mostrarModal;
 
 function asignarSonidoABotones() {
-  document.querySelectorAll('.btn, #btn').forEach(btn => {
+  document.querySelectorAll('.btn, #btn, #btn-aprende, #btn-juega').forEach(btn => {
     btn.addEventListener('click', () => {
       efectoSonido.currentTime = 0;
       efectoSonido.play();
     });
   });
 }
-
+asignarSonidoABotones(); 
 
 
 // ========== BANDERAS ==========
+
 document.addEventListener('DOMContentLoaded', () => {
   const argentina = document.querySelector('.arg-hover');
   const ingles = document.querySelector('.ing-hover');
@@ -65,6 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggleActive = (clickedFlag, otherFlag) => {
     clickedFlag.classList.add('active');
     otherFlag.classList.remove('active');
+
+    // Sonido al hacer click en bandera
+
+    efectoSonido.currentTime = 0;
+    efectoSonido.play();
   };
 
   argentina.addEventListener('click', () => toggleActive(argentina, ingles));
@@ -72,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ========== MODO DE JUEGO ==========
+
 document.addEventListener('DOMContentLoaded', () => {
   const colorPElements = document.querySelectorAll('.color-p');
 
@@ -79,20 +107,29 @@ document.addEventListener('DOMContentLoaded', () => {
     element.addEventListener('click', () => {
       colorPElements.forEach(el => el.classList.remove('active'));
       element.classList.add('active');
+
+      // Sonido al seleccionar modo de juego
+
+      efectoSonido.currentTime = 0;
+      efectoSonido.play();
     });
   });
 });
 
 
 // ========== INICIO ==========
+
 document.addEventListener('DOMContentLoaded', () => {
   asignarBotonCategorias();
+  asignarBotonAprende();
+  asignarBotonJuega();
   inicializarEfectosTarjetas();
   asignarSonidoABotones();
 });
 
 
 // ========== EFECTOS TARJETAS ==========
+
 function inicializarEfectosTarjetas() {
   document.querySelectorAll('.tarjeta').forEach(tarjeta => {
     tarjeta.addEventListener('mousedown', () => tarjeta.classList.add('clickeada'));
@@ -100,31 +137,29 @@ function inicializarEfectosTarjetas() {
   });
 }
 
-
-// =================== sonido click en categorias ====================
+// ========== SONIDO CLICK EN CATEGORÍAS ==========
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Seleccionamos los ítems de categorías (suponiendo que tienen la clase .item-categoria)
-    const itemsCategoria = document.querySelectorAll('.item-categoria');
+  const itemsCategoria = document.querySelectorAll('.item-categoria');
 
-    // Añadimos un evento de clic a cada ítem de categoría
-    itemsCategoria.forEach((item) => {
-        item.addEventListener('click', () => {
-            // Reproducimos el sonido de botón cuando se hace clic
-            efectoSonido.currentTime = 0;  // Resetea el tiempo del sonido
-            efectoSonido.play();          // Reproduce el sonido
-        });
+  itemsCategoria.forEach((item) => {
+    item.addEventListener('click', () => {
+      efectoSonido.currentTime = 0;
+      efectoSonido.play();
     });
+  });
 });
 
-
 // ========== CATEGORÍAS DINÁMICAS ==========
+
 const contenedorVentana = document.getElementById('ventana-principal');
 let contenidoInicial = contenedorVentana.innerHTML;
 let seleccionadosCategorias = {};
 
 function asignarEventosCategorias() {
-  // Eventos de selección de categorías
+
+  // Eventos para seleccionar opciones dentro de tarjetas
+
   document.querySelectorAll('.tarjetas span').forEach(span => {
     span.addEventListener('click', () => {
       const tarjeta = span.closest('.tarjetas');
@@ -134,21 +169,25 @@ function asignarEventosCategorias() {
         seleccionadosCategorias[categoria] = new Set();
       }
 
-      const yaSeleccionado = span.classList.contains('activo-verde');
+      const yaSeleccionado = span.classList.contains('active-ops-tarjetas');
 
       if (yaSeleccionado) {
-        span.classList.remove('activo-verde');
+        span.classList.remove('active-ops-tarjetas');
         seleccionadosCategorias[categoria].delete(span.textContent.trim());
       } else {
         if (seleccionadosCategorias[categoria].size < 6) {
-          span.classList.add('activo-verde');
+          span.classList.add('active-ops-tarjetas');
           seleccionadosCategorias[categoria].add(span.textContent.trim());
         } else {
           alert(`Máximo 6 en ${categoria}`);
         }
       }
 
+      efectoSonido.currentTime = 0;
+      efectoSonido.play();
+
       // Actualizar contador
+
       document.querySelectorAll('.ctn').forEach(ctn => {
         const titulo = ctn.querySelector('p').textContent.trim();
         if (titulo === categoria) {
@@ -158,25 +197,32 @@ function asignarEventosCategorias() {
     });
   });
 
-  // Botón Guardar
-  document.querySelector('.btn-select.verde')?.addEventListener('click', () => {
+  // Botón Guardar (verde)
+
+  document.querySelector('.btn-select.verde')?.addEventListener('click', function () {
+    this.classList.add('activo-verde');
     console.log('Guardado:', seleccionadosCategorias);
     alert('Categorías guardadas correctamente.');
   });
 
-  // Botón Volver
-  document.querySelector('.btn-select.rojo')?.addEventListener('click', () => {
+  // Botón Volver (rojo)
+  
+  document.querySelector('.btn-select.rojo')?.addEventListener('click', function () {
+    this.classList.add('activo-rojo');
     contenedorVentana.innerHTML = contenidoInicial;
     asignarBotonCategorias();
+    asignarBotonAprende();
+    asignarBotonJuega();
     inicializarEfectosTarjetas();
     asignarSonidoABotones();
   });
 
-  asignarSonidoABotones(); // Reasignar sonido
+  asignarSonidoABotones(); 
 }
 
 
 // Botón para abrir categorías
+
 function asignarBotonCategorias() {
   document.getElementById('btn-categorias')?.addEventListener('click', () => {
     fetch('secciones/categorias.html')
@@ -189,4 +235,58 @@ function asignarBotonCategorias() {
       })
       .catch(err => console.error('Error al cargar sección:', err));
   });
+}
+
+
+// Botón para abrir aprende (tutorial)
+
+function asignarBotonAprende() {
+  document.getElementById('btn-aprende')?.addEventListener('click', () => {
+    fetch('secciones/tutorial.html')
+      .then(res => res.text())
+      .then(data => {
+        contenedorVentana.innerHTML = data;
+        asignarEventosBotonVolver();
+        asignarSonidoABotones();
+      })
+      .catch(err => console.error('Error al cargar tutorial:', err));
+  });
+}
+
+// Botón para abrir juega (juego)
+
+function asignarBotonJuega() {
+  document.getElementById('btn-juega')?.addEventListener('click', () => {
+    fetch('secciones/juego.html')
+      .then(res => res.text())
+      .then(data => {
+        contenedorVentana.innerHTML = data;
+        asignarEventosBotonVolver();
+        asignarSonidoABotones();
+      })
+      .catch(err => console.error('Error al cargar juego:', err));
+  });
+}
+
+// Botón volver (rojo) para tutorial y juego
+
+function asignarEventosBotonVolver() {
+  const botonesVolver = contenedorVentana.querySelectorAll('.volver');
+  
+  botonesVolver.forEach(btn => {
+    btn.addEventListener('click', () => {
+      efectoSonido.currentTime = 0;
+      efectoSonido.play();
+
+      contenedorVentana.innerHTML = contenidoInicial;
+
+      asignarBotonCategorias();
+      asignarBotonAprende();
+      asignarBotonJuega();
+      inicializarEfectosTarjetas();
+      asignarSonidoABotones();
+    });
+  });
+
+
 }
